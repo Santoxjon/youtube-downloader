@@ -4,7 +4,11 @@ import fs from 'fs';
 
 import { getVideoId, validateUrl } from './helpers/url.helper';
 import { downloadAudio } from './helpers/downloaders.helper';
-import { sendInvalidUrlMessage } from './helpers/errors.helper';
+import {
+  sendErrorDuringDownloadMessage,
+  sendErrorDuringSendingMessage,
+  sendInvalidUrlMessage,
+} from './helpers/errors.helper';
 import { URL_REGEX } from './helpers/consts.helper';
 
 dotenv.config();
@@ -46,15 +50,14 @@ bot.on('message', (msg: TelegramBotAPI.Message) => {
                         bot.deleteMessage(chatId, optionsMsg.message_id);
                       })
                       .catch((error) => {
-                        console.error('Error sending audio: ', error);
-                        bot.sendMessage(chatId, 'Error downloading audio 😭');
+                        sendErrorDuringSendingMessage(bot, chatId);
                       });
                   } else {
-                    bot.sendMessage(chatId, 'Error downloading audio 😭');
+                    sendErrorDuringDownloadMessage(bot, chatId);
                   }
                 })
                 .catch((error) => {
-                  console.error('Error downloading audio: ', error);
+                  sendErrorDuringDownloadMessage(bot, chatId);
                 });
             }
             if (chosenOption === `/video ${videoId}`) {

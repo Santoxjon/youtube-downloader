@@ -7,3 +7,25 @@ export const sendInvalidUrlMessage = (bot: TelegramBotAPI, chatId: number) => {
     { parse_mode: 'MarkdownV2', disable_web_page_preview: true }
   );
 };
+
+export const sendErrorDuringDownloadMessage = (
+  bot: TelegramBotAPI,
+  chatId: number
+) => {
+  bot.sendMessage(
+    chatId,
+    '❌ *ERROR* ❌\nAn error occurred while downloading the video\\.\nPlease try again later\\.',
+    { parse_mode: 'MarkdownV2', disable_web_page_preview: true }
+  );
+};
+
+export const sendErrorDuringSendingMessage = (
+  bot: TelegramBotAPI,
+  chatId: number
+) => {
+  bot.sendMessage(
+    chatId,
+    '❌ *ERROR* ❌\nAn error occurred while sending the audio\\.\nPlease try again later\\.',
+    { parse_mode: 'MarkdownV2', disable_web_page_preview: true }
+  );
+};
