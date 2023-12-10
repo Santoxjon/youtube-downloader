@@ -4,7 +4,7 @@ import fs from 'fs';
 
 import { getVideoId, validateUrl } from './helpers/url.helper';
 import { downloadAudio } from './helpers/downloaders.helper';
-import { sendInvalidUrlMessage } from './helpers/messages.helper';
+import { sendInvalidUrlMessage } from './helpers/errors.helper';
 import { URL_REGEX } from './helpers/consts.helper';
 
 dotenv.config();
@@ -33,7 +33,6 @@ bot.on('message', (msg: TelegramBotAPI.Message) => {
           },
         })
         .then((optionsMsg) => {
-          // Delete the options message after the user chooses an option
           bot.once('message', async (choiceMsg: TelegramBotAPI.Message) => {
             const chosenOption = choiceMsg.text;
             if (chosenOption === `/audio ${videoId}`) {
