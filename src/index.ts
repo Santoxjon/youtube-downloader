@@ -21,7 +21,6 @@ bot.on('message', (msg: TelegramBotAPI.Message) => {
     // return;
   } else {
     if (!userInput.includes('/audio') && !userInput.includes('/video')) {
-      console.log('🦋 || file: index.ts:43 || bot.on || userInput:', userInput);
       const videoId: string = getVideoId(userInput);
       bot
         .sendMessage(chatId, 'Please choose an option:', {
@@ -48,6 +47,7 @@ bot.on('message', (msg: TelegramBotAPI.Message) => {
                         bot.deleteMessage(chatId, optionsMsg.message_id);
                       })
                       .catch((error) => {
+                        console.error('Error sending audio: ', error);
                         bot.sendMessage(chatId, 'Error downloading audio 😭');
                       });
                   } else {
@@ -55,10 +55,7 @@ bot.on('message', (msg: TelegramBotAPI.Message) => {
                   }
                 })
                 .catch((error) => {
-                  console.warn(
-                    '🦋 || file: index.ts:55 || bot.once || error:',
-                    error
-                  );
+                  console.error('Error downloading audio: ', error);
                 });
             }
             if (chosenOption === `/video ${videoId}`) {
