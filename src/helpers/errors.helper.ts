@@ -1,5 +1,13 @@
 import TelegramBotAPI from 'node-telegram-bot-api';
 
+export const sendInvalidMessage = (bot: TelegramBotAPI, chatId: number) => {
+  bot.sendMessage(
+    chatId,
+    '❌ *ERROR* ❌\nInvalid command\\. Please use one of the following commands:\n\n`/audio <YouTube URL>`\n`/video <YouTube URL>`',
+    { parse_mode: 'MarkdownV2', disable_web_page_preview: true }
+  );
+};
+
 export const sendInvalidUrlMessage = (bot: TelegramBotAPI, chatId: number) => {
   bot.sendMessage(
     chatId,

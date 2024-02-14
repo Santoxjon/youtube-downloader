@@ -5,3 +5,5 @@ export const DOT_BE_ID_REGEX: RegExp =
   /(?:youtu\.be\/|youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|.*[?&]vi=)([^"&?\/\s]{11})/;
 export const DOT_COM_ID_REGEX: RegExp =
   /(?:youtu\.be\/|youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|.*[?&]vi=)([^"&?\/\s]{11})/;
+
+export const LOADING_SEQUENCE: string = '⠋⠙⠹⠸⠼⠴⠦⠧⠇⠏';
